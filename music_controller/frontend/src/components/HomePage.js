@@ -8,7 +8,7 @@ BrowserRouter as Router,
 Routes,
 Route,
 Link,
-Redirect
+Navigate
 } from "react-router-dom";
 
 class HomePage extends Component { 
@@ -52,16 +52,8 @@ constructor(props) {
     
       <Router>
         <Routes>
-          <Route exact path="/"
-            render={() => {
-              return this.state.roomCode ?
-                (< Redirect to={`/room/${this.state.roomCode}`}
-                />
-                ) : (
-                  this.renderHomePage()
-                );
-          }} 
-          />
+          <Route exact path="/" element={this.state.roomCode ? (<Navigate replace to={`/room/${this.state.roomCode}`} />)
+            : this.renderHomepage()} />
           
          <Route path="/join" element={<RoomJoinPage/>}></Route> 
           <Route path="/create" element={<CreateRoomPage/> }></Route>  
