@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom'
-
+import { useParams } from 'react-router-dom';
+import { Grid, Button, Typography } from '@material-ui/core';
+import { Link } from "react-router-dom"
 
 export default function Room(props) {
     const initialState = {
@@ -24,12 +25,37 @@ export default function Room(props) {
           })
         })
     },[roomCode,setRoomData]) //It renders when the object changes .If we use roomData and/or roomCode then it rerenders infinite times
-    return (
-      <div>
+  return (
+    <Grid container spacing={1}>
+      <Grid item xs={12} align="center">
+        <Typography variant="h6" component="h6">
         <h3>{roomCode}</h3>
-        <p>Votes: {roomData.votesToSKip}</p>  
-        <p>Guest: {roomData.guestCanPause.toString()}</p>
-        <p>Host: {roomData.isHost.toString()}</p>  
-      </div>
+        </Typography>
+      </Grid>
+      <Grid item xs={12} align="center">
+      <Typography variant="h6" component="h6">
+      <p>Votes: {roomData.votesToSKip}</p>
+        </Typography>
+      </Grid>
+      <Grid item xs={12} align="center">
+      <Typography variant="h6" component="h6">
+      <p>Guest: {roomData.guestCanPause.toString()}</p>
+        </Typography>
+      </Grid>
+      <Grid item xs={12} align="center">
+      <Typography variant="h6" component="h6">
+      <p>Host: {roomData.isHost.toString()}</p>
+        </Typography>
+      </Grid>
+      <Grid item xs={12} align="center">
+        <Button
+        variant="contained"
+        color="primary"
+        to="/"
+        component={Link}>Leave Room
+         </Button>
+      </Grid>
+
+      </Grid>
     )
   }
